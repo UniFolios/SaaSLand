@@ -1,6 +1,6 @@
 export interface PricingPlan {
   name: string;
-  price: number;
+  price: string;  // Keep as string since we're displaying it
+  isPopular?: boolean;
   features: string[];
-  isPopular: boolean;
 } 
