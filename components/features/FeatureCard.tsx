@@ -3,18 +3,31 @@ import { Feature } from './types'
 
 interface FeatureCardProps extends Omit<Feature, 'id'> {}
 
+/**
+ * FeatureCard Component
+ * This component displays a feature with an icon, title, and description.
+ *
+ * Props:
+ * - icon: URL for the feature's icon.
+ * - title: Title of the feature.
+ * - description: A brief description of the feature.
+ */
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => {
   return (
-    <div className="bg-white p-6">
+    <div>
+      {/* Feature Icon */}
       <img 
         src={icon} 
         alt={`${title} icon`} 
-        className="w-12 h-12 mb-4"
       />
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-gray-600">{description}</p>
+
+      {/* Feature Title */}
+      <h3>{title}</h3>
+
+      {/* Feature Description */}
+      <p>{description}</p>
     </div>
   )
 }
 
-export default FeatureCard 
+export default FeatureCard

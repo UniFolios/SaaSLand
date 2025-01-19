@@ -7,6 +7,11 @@ import FeatureCard from './FeatureCard'
 
 interface FeaturesProps extends BaseComponentProps {}
 
+/**
+ * Features Component
+ * This component displays a section of features, divided into left, right, and center columns,
+ * with a special feature card in the center.
+ */
 const Features: React.FC<FeaturesProps> = () => {
   const leftFeatures: Feature[] = [
     {
@@ -39,35 +44,39 @@ const Features: React.FC<FeaturesProps> = () => {
   ];
 
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+    <section>
+      <div>
+        {/* Section Header */}
+        <div>
+          <h2>
             Delivering tailored white-label and branding options to fit your business.
           </h2>
-          <p className="text-gray-600">
+          <p>
             Customized options designed to elevate your brand, effectively communicating your unique value proposition to the market.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* Features Grid */}
+        <div>
           {/* Left Column */}
-          <div className="space-y-8">
+          <div>
             {leftFeatures.map((feature) => (
               <FeatureCard key={feature.id} {...feature} />
             ))}
           </div>
+
           {/* Center Column - Special Feature */}
-          <div className="md:row-span-2">
-            <SpecialFeatureCard
+          <div>
+            {/* uncomment this to add a special feature card */}
+            {/* <SpecialFeatureCard
               title="Performance Management"
               description="Boost Productivity with Accurate Time Tracking and Comprehensive Reporting."
               image="https://placehold.co/450x246"
-            />
+            /> */}
           </div>
 
           {/* Right Column */}
-          <div className="space-y-8">
+          <div>
             {rightFeatures.map((feature) => (
               <FeatureCard key={feature.id} {...feature} />
             ))}
@@ -78,4 +87,4 @@ const Features: React.FC<FeaturesProps> = () => {
   )
 }
 
-export default Features 
+export default Features

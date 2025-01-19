@@ -2,42 +2,50 @@ import React from 'react'
 import { PricingPlan } from './types'
 
 interface PricingCardProps extends Omit<PricingPlan, 'price'> {
-  price: string;  // Explicitly type price as string
+  price: string; // Explicitly type price as string
 }
 
+/**
+ * PricingCard Component
+ * Displays a single pricing card with the plan name, price, features, and optional "Most Popular" tag.
+ *
+ * Props:
+ * - name: The name of the plan.
+ * - price: The price of the plan.
+ * - features: An array of features included in the plan.
+ * - isPopular: A boolean indicating if this is the most popular plan.
+ */
 const PricingCard = ({ name, price, features, isPopular }: PricingCardProps) => {
   return (
-    <div className={`rounded-2xl p-8 transition-all hover:scale-105 ${
-      isPopular ? 'bg-primary text-white ring-4 ring-primary/30' : 'bg-white shadow-lg'
-    }`}>
+    <div>
+      {/* Most Popular Badge */}
       {isPopular && (
-        <span className="bg-white text-primary px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">
+        <span>
           Most Popular
         </span>
       )}
-      
-      <h3 className="text-2xl font-bold">{name} plan</h3>
-      
-      <div className="mt-4 mb-6">
-        <div className="flex items-baseline">
-          <span className="text-4xl font-bold">${price}</span>
-          <span className="ml-2 text-sm opacity-80">Per Month</span>
+
+      {/* Plan Name */}
+      <h3>{name} plan</h3>
+
+      {/* Price */}
+      <div>
+        <div>
+          <span>${price}</span>
+          <span>Per Month</span>
         </div>
       </div>
 
-      <button className={`w-full py-3 px-6 rounded-lg font-medium transition-colors mb-8 ${
-        isPopular 
-          ? 'bg-white text-primary hover:bg-gray-100' 
-          : 'bg-primary text-white hover:bg-primary/90'
-      }`}>
+      {/* Call-to-Action Button */}
+      <button>
         Get early access
       </button>
 
-      <ul className="space-y-4">
+      {/* Features List */}
+      <ul>
         {features.map((feature, index) => (
-          <li key={index} className="flex items-center text-sm">
-            <svg 
-              className={`w-5 h-5 mr-3 flex-shrink-0 ${isPopular ? 'text-white' : 'text-primary'}`} 
+          <li key={index}>
+            {/* <svg 
               fill="currentColor" 
               viewBox="0 0 20 20"
             >
@@ -46,7 +54,7 @@ const PricingCard = ({ name, price, features, isPopular }: PricingCardProps) => 
                 d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" 
                 clipRule="evenodd"
               />
-            </svg>
+            </svg> */}
             {feature}
           </li>
         ))}
@@ -55,4 +63,4 @@ const PricingCard = ({ name, price, features, isPopular }: PricingCardProps) => 
   )
 }
 
-export default PricingCard 
+export default PricingCard

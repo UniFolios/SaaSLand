@@ -5,6 +5,10 @@ import { BaseComponentProps } from '../types'
 
 interface ToolsProps extends BaseComponentProps {}
 
+/**
+ * Tools Component
+ * Displays a grid of tools split into two rows, with a Call-to-Action button at the bottom.
+ */
 const Tools: React.FC<ToolsProps> = () => {
   const tools: Tool[] = [
     // First row - 11 tools
@@ -22,22 +26,26 @@ const Tools: React.FC<ToolsProps> = () => {
   ];
 
   return (
-    <section className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16">
-          Integrate With<br />Tools You Know And Love.
+    <section>
+      <div>
+        {/* Header */}
+        <h2>
+          Integrate With
+          <br />
+          Tools You Know And Love.
         </h2>
         
-        <div className="flex flex-col items-center space-y-12">
+        {/* Tools Grid */}
+        <div>
           {/* First row - 11 tools */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-11 gap-8 justify-items-center">
+          <div>
             {tools.slice(0, 11).map((tool) => (
               <ToolCard key={tool.id} {...tool} />
             ))}
           </div>
           
           {/* Second row - 4 tools */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 justify-items-center">
+          <div>
             {tools.slice(11).map((tool) => (
               <ToolCard key={tool.id} {...tool} />
             ))}
@@ -45,8 +53,8 @@ const Tools: React.FC<ToolsProps> = () => {
         </div>
 
         {/* CTA Button */}
-        <div className="text-center mt-16">
-          <button className="px-8 py-3 bg-[#140a3e] text-white rounded-md hover:bg-opacity-90 transition-colors">
+        <div>
+          <button>
             Get Started
           </button>
         </div>
@@ -55,4 +63,4 @@ const Tools: React.FC<ToolsProps> = () => {
   )
 }
 
-export default Tools 
+export default Tools

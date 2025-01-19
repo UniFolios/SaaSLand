@@ -5,30 +5,40 @@ interface StepProps extends StepType {
   className?: string;
 }
 
+/**
+ * Step Component
+ * This component displays a single step with a number, title, description, and an icon.
+ *
+ * Props:
+ * - number: The step number.
+ * - title: The title of the step.
+ * - description: A brief description of the step.
+ * - icon: URL of the step's icon.
+ * - className: Optional className for additional styling or layout control.
+ */
 const Step = ({ number, title, description, icon, className = '' }: StepProps) => {
   return (
-    <div className={`relative max-w-2xl ${className}`}>
+    <div>
       {/* Step number badge */}
-      <div className="absolute -top-10 bg-[#8277ff] rounded-full text-white px-3 py-1 text-sm font-medium">
+      <div>
         Step {number}
       </div>
 
       {/* Main card */}
-      <div className="bg-white p-6 flex justify-between items-start">
-        <div className="flex-1 pr-8">
-          <h3 className="text-xl font-semibold mb-2">{title}</h3>
-          <p className="text-gray-600">{description}</p>
+      <div>
+        <div>
+          <h3>{title}</h3>
+          <p>{description}</p>
         </div>
         <img 
           src={icon} 
           alt={`${title} icon`}
           width={48}
           height={48}
-          className="flex-shrink-0"
         />
       </div>
     </div>
   )
 }
 
-export default Step 
+export default Step

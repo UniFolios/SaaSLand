@@ -5,6 +5,13 @@ import { BaseComponentProps } from '../types'
 
 interface ClientsProps extends BaseComponentProps {}
 
+/**
+ * Clients Component
+ * This component displays a list of client logos and a heading.
+ *
+ * Props:
+ * - None directly, but the component uses an array of `Client` objects to render.
+ */
 const Clients: React.FC<ClientsProps> = () => {
   const clients: Client[] = [
     { name: "Company 1", logo: "https://placehold.co/134x32" },
@@ -16,21 +23,24 @@ const Clients: React.FC<ClientsProps> = () => {
   ]
 
   return (
-    <section className="py-12 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-xl sm:text-2xl font-semibold text-center text-gray-600 mb-12">
+    <section>
+      {/* Heading Section */}
+      <div>
+        <h2>
           Elevate your company with us, just like 100+ others
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center">
-          {clients.map((client, index) => (
-            <div key={index} className="w-full max-w-[134px]">
-              <ClientLogo {...client} />
-            </div>
-          ))}
-        </div>
+      </div>
+
+      {/* Grid of Client Logos */}
+      <div>
+        {clients.map((client, index) => (
+          <div key={index}>
+            <ClientLogo {...client} />
+          </div>
+        ))}
       </div>
     </section>
   )
 }
 
-export default Clients 
+export default Clients

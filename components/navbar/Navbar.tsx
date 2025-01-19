@@ -1,29 +1,31 @@
 import Link from 'next/link'
 
+/**
+ * Navbar Component
+ * This component renders a navigation bar with links and a call-to-action button.
+ */
 const Navbar = () => {
   return (
-    <nav className="bg-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="text-xl font-bold">SaaSLand</Link>
+    <nav>
+      <div>
+        <div>
+          <div>
+            {/* Logo */}
+            <Link href="/">SaaSLand</Link>
           </div>
-          <div className="flex items-center">
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <Link href="/" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">Home</Link>
-                <Link href="/about" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">About</Link>
-                <Link href="/features" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">Features</Link>
-                <Link href="/pricing" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">Pricing</Link>
-                <Link href="/contact" className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900">Contact</Link>
+          <div>
+            {/* Navigation Links */}
+            <div>
+              <div>
+                <Link href="/">Home</Link>
+                <Link href="/about">About</Link>
+                <Link href="/features">Features</Link>
+                <Link href="/pricing">Pricing</Link>
+                <Link href="/contact">Contact</Link>
               </div>
             </div>
-            <Link 
-              href="/early-access" 
-              className="ml-8 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-            >
-              Get early access
-            </Link>
+            {/* Call-to-Action Button */}
+            <Link href="/early-access">Get early access</Link>
           </div>
         </div>
       </div>
@@ -31,4 +33,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar 
+export default Navbar
