@@ -40,7 +40,7 @@ const HowItWorks: React.FC<HowItWorksProps> = () => {
         </div>
 
         <div className="mt-16 space-y-12 md:space-y-0 flex flex-col md:flex-row md:justify-between gap-4">
-          {steps.map((step, index) => (
+          {steps.map((step) => (
             <Step 
               key={step.number} 
               {...step} 

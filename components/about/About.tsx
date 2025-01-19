@@ -1,12 +1,17 @@
+import Image from 'next/image';
+
 const About = () => {
   return (
     <section className="relative py-16 bg-gray-900">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
-          src="https://framerusercontent.com/images/OmkjNSm6aEdwlXovJ7nPC4qOUg.png"
+        <Image
+          src="https://placehold.co/500x300"
           alt="Background"
           className="w-full h-full object-cover"
+          width={500}
+          height={300}
+          quality={75}
         />
         <div className="absolute inset-0 bg-black/40 mix-blend-multiply" />
       </div>
@@ -15,10 +20,13 @@ const About = () => {
         <div className="grid md:grid-cols-3 gap-8 items-center">
           {/* Left Column - Image */}
           <div>
-            <img
+            <Image
               src="https://placehold.co/349x233"
               alt="Support Image"
               className="w-full rounded-lg"
+              width={349}
+              height={233}
+              quality={75}
             />
           </div>
 
@@ -28,7 +36,7 @@ const About = () => {
               Support and<br />ticketing system
             </h2>
             <p className="text-gray-200 mb-8">
-              That dry I Were image waters own bring light subdue Meat she'd upon very 
+              That dry I Were image waters own bring light subdue Meat she&apos;d upon very 
               first cattle evening own grass.
             </p>
             <a
@@ -47,19 +55,23 @@ const About = () => {
                 <h3 className="text-4xl font-bold text-white">99%</h3>
                 <p className="text-gray-200">Client Satisfaction</p>
               </div>
-              <img 
+              <Image 
                 src="https://placehold.co/48x48" 
                 alt="Satisfaction Icon" 
                 className="w-12 h-12"
+                width={48}
+                height={48}
               />
             </div>
 
             {/* Second Stat Row */}
             <div className="flex items-start justify-between">
-              <img 
+              <Image 
                 src="https://placehold.co/48x48" 
                 alt="Downloads Icon" 
                 className="w-12 h-12"
+                width={48}
+                height={48}
               />
               <div className="text-right">
                 <h3 className="text-4xl font-bold text-white">1.2M</h3>
