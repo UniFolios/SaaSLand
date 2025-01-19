@@ -16,14 +16,14 @@ const About = () => {
           {/* Left Column - Image */}
           <div>
             <img
-              src="https://framerusercontent.com/images/qrPzrzKgD7wd3ty7GpeQ8i313s.png"
+              src="https://placehold.co/349x233"
               alt="Support Image"
               className="w-full rounded-lg"
             />
           </div>
 
           {/* Center Column - Content */}
-          <div className="text-white text-center">
+          <div className="text-white">
             <h2 className="text-4xl font-bold mb-4">
               Support and<br />ticketing system
             </h2>
@@ -39,15 +39,32 @@ const About = () => {
             </a>
           </div>
 
-          {/* Right Column - Stats */}
-          <div className="space-y-8">
-            <div className="text-white">
-              <h3 className="text-3xl font-bold">99%</h3>
-              <p className="text-gray-200">Client satisfaction</p>
+          {/* Right Column - Stats Box */}
+          <div className="bg-white/10 backdrop-blur-sm p-6 space-y-6">
+            {/* First Stat Row */}
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="text-4xl font-bold text-white">99%</h3>
+                <p className="text-gray-200">Client Satisfaction</p>
+              </div>
+              <img 
+                src="https://placehold.co/48x48" 
+                alt="Satisfaction Icon" 
+                className="w-12 h-12"
+              />
             </div>
-            <div className="text-white">
-              <h3 className="text-3xl font-bold">1.2M</h3>
-              <p className="text-gray-200">Play Store download</p>
+
+            {/* Second Stat Row */}
+            <div className="flex items-start justify-between">
+              <img 
+                src="https://placehold.co/48x48" 
+                alt="Downloads Icon" 
+                className="w-12 h-12"
+              />
+              <div className="text-right">
+                <h3 className="text-4xl font-bold text-white">1.2M</h3>
+                <p className="text-gray-200">Play Store Downloads</p>
+              </div>
             </div>
           </div>
         </div>
