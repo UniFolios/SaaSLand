@@ -1,6 +1,5 @@
 export interface Tool {
-  name: string;
-  description: string;
+  id: number;
   icon: string;
-  link: string;
+  name: string;
 } 

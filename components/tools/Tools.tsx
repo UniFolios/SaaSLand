@@ -6,17 +6,49 @@ import { BaseComponentProps } from '../types'
 interface ToolsProps extends BaseComponentProps {}
 
 const Tools: React.FC<ToolsProps> = () => {
+  const tools: Tool[] = [
+    // First row - 11 tools
+    ...Array(11).fill(null).map((_, i) => ({
+      id: i + 1,
+      icon: "https://placehold.co/80x80",
+      name: `Tool ${i + 1}`,
+    })),
+    // Second row - 4 tools
+    ...Array(4).fill(null).map((_, i) => ({
+      id: i + 12,
+      icon: "https://placehold.co/80x80",
+      name: `Tool ${i + 12}`,
+    }))
+  ];
+
   return (
-    <section className="py-16">
+    <section className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-12">Our Tools</h2>
-        <div className="grid md:grid-cols-4 gap-6">
-          {[1, 2, 3, 4].map((item) => (
-            <div key={item} className="p-4 border rounded-lg text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full mx-auto mb-4"></div>
-              <h3 className="font-semibold">Tool {item}</h3>
-            </div>
-          ))}
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16">
+          Integrate With<br />Tools You Know And Love.
+        </h2>
+        
+        <div className="flex flex-col items-center space-y-12">
+          {/* First row - 11 tools */}
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-11 gap-8 justify-items-center">
+            {tools.slice(0, 11).map((tool) => (
+              <ToolCard key={tool.id} {...tool} />
+            ))}
+          </div>
+          
+          {/* Second row - 4 tools */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 justify-items-center">
+            {tools.slice(11).map((tool) => (
+              <ToolCard key={tool.id} {...tool} />
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Button */}
+        <div className="text-center mt-16">
+          <button className="px-8 py-3 bg-[#140a3e] text-white rounded-md hover:bg-opacity-90 transition-colors">
+            Get Started
+          </button>
         </div>
       </div>
     </section>
