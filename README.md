@@ -107,4 +107,4 @@ MIT License - see LICENSE file for details
 
 ---
 
-Built with ❤️ by [Your Name/Team]
+Built with ❤️ by HSTech
