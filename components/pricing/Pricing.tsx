@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react'
 import PricingCard from './PricingCard'
 import { PricingPlan } from './types'
