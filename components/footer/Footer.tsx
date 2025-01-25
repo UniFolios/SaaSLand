@@ -1,97 +1,157 @@
 const Footer = () => {
   return (
-    <footer>
-      {/* Top Row */}
-      <div>
-        <div>
-          <div>
-            {/* Logo and Description */}
-            <div>
-              <img 
-                src="https://placehold.co/120x40" 
-                alt="Logo" 
-              />
-              <p>
-                Brief description of your company or platform. Add your company's mission or value proposition here.
-              </p>
-            </div>
-
-            {/* Pages Links */}
-            <div>
-              <h3>Pages</h3>
-              <div>
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Features</a>
-                <a href="#">Pricing</a>
-                <a href="#">Blog</a>
-                <a href="#">Contact</a>
-                <a href="#">Support</a>
-                <a href="#">FAQ</a>
-              </div>
-            </div>
+    <footer style={{ backgroundColor: '#F9F9F9', padding: '4rem 2rem' }}>
+      <div
+        style={{
+          maxWidth: '1200px', // Fixed container width
+          margin: '0 auto',
+        }}
+      >
+        {/* Top Row */}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            marginBottom: '3rem',
+            flexWrap: 'wrap',
+          }}
+        >
+          {/* Logo and Description */}
+          <div style={{ maxWidth: '300px', marginBottom: '1rem' }}>
+            <img src="https://placehold.co/120x40" alt="Logo" />
+            <p
+              style={{
+                marginTop: '1rem',
+                color: '#666',
+                fontSize: '0.95rem',
+                lineHeight: '1.6',
+              }}
+            >
+              Brief description of your company or platform. Add your company's
+              mission or value proposition here.
+            </p>
           </div>
-        </div>
-      </div>
 
-      {/* Middle Row */}
-      <div>
-        <div>
+          {/* Pages Links */}
           <div>
-            {/* Contact Info */}
-            <div>
-              <h3>Address</h3>
-              <div>
-                <div>
-                  {/* <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg> */}
-                  <span>(123) 456-7890</span>
-                </div>
-                <div>
-                  {/* <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg> */}
-                  <span>info@example.com</span>
-                </div>
-                <div>
-                  {/* <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg> */}
-                  <span>123 Street, City, Country</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div>
-              <h3>Follow us</h3>
-              <div>
-                {['facebook', 'twitter', 'dribbble', 'instagram'].map((social) => (
-                  <a key={social} href="#">
-                    <img 
-                      src={`https://placehold.co/20x20`}
-                      alt={social}
-                    />
+            <h3 style={{ fontSize: '1rem', marginBottom: '1rem', color: '#333' }}>
+              Pages
+            </h3>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(4, auto)',
+                gap: '1rem',
+                fontSize: '0.95rem',
+                color: '#666',
+              }}
+            >
+              {['Home', 'About', 'Features', 'Pricing', 'Blog', 'Contact', 'Support', 'FAQ'].map(
+                (page) => (
+                  <a
+                    key={page}
+                    href="#"
+                    style={{ textDecoration: 'none', color: '#666' }}
+                  >
+                    {page}
                   </a>
-                ))}
-              </div>
+                )
+              )}
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Row */}
-      <div>
-        <div>
-          <div>
-            <p>Designed by HSTech, Powered by OAMK</p>
+        {/* Middle Row */}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            padding: '2rem',
+            backgroundColor: '#F5F5F5',
+            borderRadius: '8px',
+            marginBottom: '3rem',
+          }}
+        >
+          {/* Address */}
+          <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', alignItems: 'center' }}>
+            <div
+              style={{
+                fontSize: '0.95rem',
+                color: '#666',
+                lineHeight: '1.6',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+              }}
+            >
+              <span>📞 (123) 456-7890</span>
+              <span>📧 info@example.com</span>
+              <span>📍 123 Street, City, Country</span>
+            </div>
           </div>
+
+          {/* Social Links */}
+          <div>
+            <h3
+              style={{
+                fontSize: '1rem',
+                marginBottom: '1rem',
+                color: '#333',
+              }}
+            >
+              Follow us
+            </h3>
+            <div
+              style={{
+                display: 'flex',
+                gap: '1rem',
+              }}
+            >
+              {['facebook', 'twitter', 'dribbble', 'instagram'].map((social) => (
+                <a
+                  key={social}
+                  href="#"
+                  style={{
+                    textDecoration: 'none',
+                    display: 'inline-block',
+                    backgroundColor: '#EAEAEA',
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <img
+                    src={`https://placehold.co/20x20`}
+                    alt={social}
+                    style={{ display: 'block' }}
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Row */}
+        <div
+          style={{
+            textAlign: 'center',
+            paddingTop: '1rem',
+            borderTop: '1px solid #EAEAEA',
+            fontSize: '0.85rem',
+            color: '#666',
+          }}
+        >
+          <p>Designed by HSTech, Powered by OAMK</p>
         </div>
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;

@@ -7,10 +7,7 @@ interface HowItWorksProps extends BaseComponentProps {}
 
 /**
  * HowItWorks Component
- * This component displays the steps for using the platform in a sequential manner.
- *
- * Props:
- * - None directly, but it uses an array of steps to render individual `Step` components.
+ * Displays the steps for using the platform in a sequential manner.
  */
 const HowItWorks: React.FC<HowItWorksProps> = () => {
   const steps: StepType[] = [
@@ -32,26 +29,44 @@ const HowItWorks: React.FC<HowItWorksProps> = () => {
       description: "Behold up on Him God a creature fruitful Fly That seasons tree Isn't fruit also lesser brought.",
       icon: "https://placehold.co/48x48"
     }
-  ];
+  ]
 
   return (
-    <section>
-      <div>
+    <section className="bg-gray-50 py-16">
+      <div className="max-w-screen-xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div>
-          <h2>How it works</h2>
-          <p>
+        <div className="text-left mb-12">
+          <h2 className="text-4xl font-bold text-gray-900">How it works</h2>
+          <p className="text-gray-600 mt-4 max-w-3xl">
             Discover how our SaaS platform transforms your workflow with intuitive features designed to streamline your processes and boost efficiency.
           </p>
         </div>
 
         {/* Steps Section */}
-        <div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {steps.map((step) => (
-            <Step 
-              key={step.number} 
-              {...step}
-            />
+            <div className="relative" key={step.number}>
+              {/* Step Number Badge */}
+              <div className="absolute -top-10 -left-1 bg-purple-100 text-purple-700 font-bold px-4 py-1 rounded-full shadow-md">
+                Step {step.number}
+              </div>
+
+              {/* Step Box */}
+              <div className="bg-white rounded-lg shadow-md p-6 flex justify-between items-center">
+                {/* Step Text */}
+                <div className="text-left">
+                  <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
+                  <p className="text-gray-600 mt-2">{step.description}</p>
+                </div>
+
+                {/* Step Icon */}
+                <img
+                  src={step.icon}
+                  alt={`Step ${step.number} icon`}
+                  className="w-12 h-12"
+                />
+              </div>
+            </div>
           ))}
         </div>
       </div>

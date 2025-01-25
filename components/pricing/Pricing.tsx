@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useState } from 'react'
 import PricingCard from './PricingCard'
 import { PricingPlan } from './types'
@@ -43,80 +44,88 @@ const plans = [
   }
 ]
 
-/**
- * Pricing Component
- * Displays pricing plans with monthly/yearly billing options and a feature comparison table.
- */
 const Pricing: React.FC<PricingProps> = () => {
   const [isYearly, setIsYearly] = useState(false)
 
   return (
-    <section>
-      <div>
+    <section className="bg-gray-50 py-16">
+      <div className="max-w-screen-xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div>
-          <h2>Our pricing</h2>
-          <p>adjusts to suit your business.</p>
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-900">Our pricing</h2>
+          <p className="text-gray-600 mt-4">adjusts to suit your business.</p>
         </div>
 
-        {/* Billing Toggle */}
-        <div>
-          <h3>Pick your plan</h3>
-          <div>
-            <button onClick={() => setIsYearly(false)}>
+        {/* Pricing Header with Toggle */}
+        <div className="flex justify-between items-center mb-12">
+          {/* Section Subheading */}
+          <h3 className="text-2xl font-bold text-gray-900">Pick your plan</h3>
+
+          {/* Toggle Buttons */}
+          <div className="flex items-center bg-gray-100 rounded-full shadow-md p-1">
+            <button
+              onClick={() => setIsYearly(false)}
+              className={`px-6 py-2 rounded-full font-semibold ${
+                !isYearly ? 'bg-white text-gray-900' : 'text-gray-500'
+              }`}
+            >
               Monthly Billing
             </button>
-            <button onClick={() => setIsYearly(true)}>
+            <button
+              onClick={() => setIsYearly(true)}
+              className={`px-6 py-2 rounded-full font-semibold ${
+                isYearly ? 'bg-white text-gray-900' : 'text-gray-500'
+              }`}
+            >
               Yearly Billing
-              <span>Save 20%</span>
+              <span className="ml-2 text-green-500 font-medium">Save 20%</span>
             </button>
           </div>
         </div>
 
         {/* Pricing Cards */}
-        <div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {plans.map((plan) => (
-            <PricingCard
+            <div
               key={plan.name}
-              {...plan}
-              price={isYearly ? (Number(plan.price) * 0.8).toFixed(2) : plan.price}
-            />
-          ))}
-        </div>
-
-        {/* Features Comparison Table */}
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th>Features</th>
-                {plans.map(plan => (
-                  <th key={plan.name}>{plan.name}</th>
+              className={`p-6 rounded-lg shadow-md ${
+                plan.isPopular
+                  ? 'bg-gray-900 text-white scale-105'
+                  : 'bg-white text-gray-900'
+              }`}
+            >
+              {plan.isPopular && (
+                <div className="mb-4 px-2 py-1 bg-yellow-400 text-gray-900 rounded-full text-sm font-bold inline-block">
+                  Most Popular
+                </div>
+              )}
+              <h3 className="text-xl font-bold">{plan.name} plan</h3>
+              <p className="mt-4 text-4xl font-bold">
+                ${isYearly ? (Number(plan.price) * 0.8).toFixed(2) : plan.price}
+                <span className="text-sm font-medium"> Per Month</span>
+              </p>
+              <button className="mt-4 px-4 py-2 bg-gray-900 text-white rounded-lg w-full">
+                Get early access
+              </button>
+              <ul className="mt-6 space-y-2 text-gray-600">
+                {plan.features.map((feature, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-center space-x-2 text-left"
+                  >
+                    <svg
+                      className="w-5 h-5 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                    </svg>
+                    <span>{feature}</span>
+                  </li>
                 ))}
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                'Up to 20 projects',
-                'Advanced analytics',
-                'Customizable templates',
-                'Integration with popular tools',
-                'Priority support',
-                'API access'
-              ].map((feature, index) => (
-                <tr key={feature}>
-                  <td>{feature}</td>
-                  {plans.map(plan => (
-                    <td key={`${plan.name}-${feature}`}>
-                      {/* <svg fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                      </svg> */}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </section>
