@@ -19,7 +19,7 @@ const BannerFramerStyle: React.FC<BannerProps> = () => {
   }, [])
 
   // Gentle transform for the 3D image container
-  const offsetY = 140 + 10 * scrollPos
+  const offsetY = 150 + 10 * scrollPos
   const scale = 1.35 + 0.4 * scrollPos
   const imageTransform = {
     transform: `translateY(${offsetY}px) scale(${scale})`,
@@ -27,7 +27,7 @@ const BannerFramerStyle: React.FC<BannerProps> = () => {
   }
 
   return (
-    <section className="relative overflow-hidden min-h-screen pt-36 pb-80 text-white">
+    <section className="relative overflow-hidden min-h-screen pt-28 pb-80 text-white">
       {/* Background Video */}
       <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0">
         <source src="/video/banner_video.mp4" type="video/mp4" />
@@ -38,18 +38,18 @@ const BannerFramerStyle: React.FC<BannerProps> = () => {
       <div className="absolute inset-0 bg-black/60 z-0" />
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center space-y-3">
-        {/* Heading */}
-        <h1 className="font-extrabold leading-tight mt-10 sm:mt-20 text-[5.4rem] sm:text-[4.7rem]">
-          Future of Saas<br className="hidden sm:block" />
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center space-y-6">
+        {/* Brutalist Heading - PERFECT, UNTOUCHED */}
+        <h1 className="font-extrabold tracking-tight mt-10 sm:mt-20 text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] leading-[1.1]">
+          Future of SaaS
         </h1>
 
-        {/* Subheading */}
-        <p className="max-w-2xl text-stone-400 text-[1.1rem] sm:text-[1.2rem]">
-          Publish your professionally designed, fully customized Saas in a day.
+        {/* Subheading - Made Slightly Smaller */}
+        <p className="max-w-3xl text-stone-300 font-medium text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.3]">
+          Publish your professionally designed, fully customized SaaS in a day.
         </p>
 
-        {/* CTA Button with Neat Animated Border */}
+        {/* CTA Button (UNCHANGED) */}
         <div className="cta-container relative inline-block rounded-full">
           <button className="cta-button relative z-10 bg-white text-stone-900 font-semibold px-6 py-2 sm:px-5 sm:py-3 text-[0.95rem] sm:text-[1.05rem] rounded-full">
             Start for free
