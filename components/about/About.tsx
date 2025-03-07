@@ -1,88 +1,75 @@
-import Image from 'next/image';
+"use client";
+import Image from "next/image";
 
-const About = () => {
+export default function About() {
   return (
-    <section className="relative py-16 bg-gray-900">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <Image
-          src="https://placehold.co/500x300"
-          alt="Background"
-          className="w-full h-full object-cover"
-          width={500}
-          height={300}
-          quality={75}
-        />
-        <div className="absolute inset-0 bg-black/40 mix-blend-multiply" />
-      </div>
+    <section className="relative pt-3 pb-24 bg-black text-white">
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 grid md:grid-cols-2 gap-16 items-center">
+        {/* Left Column - Static Image */}
+        <div className="relative overflow-hidden rounded-xl">
+          <Image
+            src="/img/about_img.jpg"
+            alt="Component System Mockup"
+            width={600}
+            height={400}
+            quality={90}
+            className="w-full rounded-xl shadow-lg"
+          />
+        </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8 items-center">
-          {/* Left Column - Image */}
-          <div>
-            <Image
-              src="https://placehold.co/349x233"
-              alt="Support Image"
-              className="w-full rounded-lg"
-              width={349}
-              height={233}
-              quality={75}
-            />
-          </div>
+        {/* Right Column - Content */}
+        <div className="space-y-6">
+          <h2 className="text-5xl font-extrabold tracking-tight">
+            Atomic component system
+          </h2>
+          <p className="text-gray-400 text-lg leading-relaxed">
+            Like tiny pieces of a puzzle, our components are designed to be combined into larger sections.
+          </p>
 
-          {/* Center Column - Content */}
-          <div className="text-white">
-            <h2 className="text-4xl font-bold mb-4">
-              Support and<br />ticketing system
-            </h2>
-            <p className="text-gray-200 mb-8">
-              That dry I Were image waters own bring light subdue Meat she&apos;d upon very 
-              first cattle evening own grass.
-            </p>
+          {/* CTA Button */}
+          <div className="flex">
             <a
               href="/learn-more"
-              className="inline-flex px-6 py-3 bg-white text-black rounded-full font-medium hover:bg-gray-100 transition shadow-lg"
+              className="cta-container relative inline-block rounded-full"
             >
-              Learn More
+              <span className="cta-button relative z-10 bg-white text-black font-semibold px-6 py-3 text-[0.95rem] sm:text-[1.05rem] rounded-full flex items-center gap-2">
+                Learn More
+                <svg
+                  className="cta-arrow w-5 h-5 transition-transform duration-300 ease-out"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5l7 7-7 7" />
+                </svg>
+              </span>
             </a>
-          </div>
-
-          {/* Right Column - Stats Box */}
-          <div className="bg-white/10 backdrop-blur-sm p-6 space-y-6">
-            {/* First Stat Row */}
-            <div className="flex items-start justify-between">
-              <div>
-                <h3 className="text-4xl font-bold text-white">99%</h3>
-                <p className="text-gray-200">Client Satisfaction</p>
-              </div>
-              <Image 
-                src="https://placehold.co/48x48" 
-                alt="Satisfaction Icon" 
-                className="w-12 h-12"
-                width={48}
-                height={48}
-              />
-            </div>
-
-            {/* Second Stat Row */}
-            <div className="flex items-start justify-between">
-              <Image 
-                src="https://placehold.co/48x48" 
-                alt="Downloads Icon" 
-                className="w-12 h-12"
-                width={48}
-                height={48}
-              />
-              <div className="text-right">
-                <h3 className="text-4xl font-bold text-white">1.2M</h3>
-                <p className="text-gray-200">Play Store Downloads</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
-    </section>
-  )
-}
 
-export default About 
+      {/* Button Hover Animation */}
+      <style jsx>{`
+        .cta-container {
+          position: relative;
+          display: inline-block;
+          border: 1px solid #d1d5db; /* stone-300 */
+          border-radius: 9999px;
+          padding: 1px;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+        }
+        .cta-container:hover .cta-arrow {
+          transform: translateX(5px) rotate(0deg);
+        }
+        .cta-arrow {
+          transform: rotate(-45deg);
+        }
+      `}</style>
+    </section>
+  );
+}
