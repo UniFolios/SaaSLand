@@ -7,11 +7,16 @@ interface PricingCardProps extends Omit<PricingPlan, 'price'> {
 
 const PricingCard = ({ name, price, features, isPopular }: PricingCardProps) => {
   return (
-    <div className={`rounded-2xl p-8 transition-all hover:scale-105 ${
-      isPopular ? 'bg-primary text-white ring-4 ring-primary/30' : 'bg-white shadow-lg'
-    }`}>
+    <div
+      className={`rounded-2xl p-8 transition-all hover:scale-105 ${
+        isPopular
+          ? 'bg-white text-black ring-4 ring-yellow-500'
+          : 'bg-[#262626] text-white shadow-lg'
+      }`}
+      style={{ boxShadow: 'inset 0 0 0 1px #000' }}
+    >
       {isPopular && (
-        <span className="bg-white text-primary px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">
+        <span className="bg-black text-white px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">
           Most Popular
         </span>
       )}
@@ -27,8 +32,8 @@ const PricingCard = ({ name, price, features, isPopular }: PricingCardProps) => 
 
       <button className={`w-full py-3 px-6 rounded-lg font-medium transition-colors mb-8 ${
         isPopular 
-          ? 'bg-white text-primary hover:bg-gray-100' 
-          : 'bg-primary text-white hover:bg-primary/90'
+          ? 'bg-black text-white hover:bg-black/80' 
+          : 'bg-[#333333] text-white hover:bg-[#444444]'
       }`}>
         Get early access
       </button>
@@ -37,7 +42,7 @@ const PricingCard = ({ name, price, features, isPopular }: PricingCardProps) => 
         {features.map((feature, index) => (
           <li key={index} className="flex items-center text-sm">
             <svg 
-              className={`w-5 h-5 mr-3 flex-shrink-0 ${isPopular ? 'text-white' : 'text-primary'}`} 
+              className={`w-5 h-5 mr-3 flex-shrink-0 ${isPopular ? 'text-black' : 'text-white'}`} 
               fill="currentColor" 
               viewBox="0 0 20 20"
             >
@@ -55,4 +60,4 @@ const PricingCard = ({ name, price, features, isPopular }: PricingCardProps) => 
   )
 }
 
-export default PricingCard 
+export default PricingCard

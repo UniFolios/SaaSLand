@@ -1,11 +1,34 @@
 'use client'
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import type { Feature } from './types'
 import { BaseComponentProps } from '../types'
 import { SpecialFeatureCard } from './SpecialFeatureCard'
 import FeatureCard from './FeatureCard'
 
-// SVGs remain exactly the same
+// Custom hook for scroll-triggered fade-up animation
+function useFadeUp() {
+  const ref = useRef<HTMLDivElement | null>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const element = ref.current
+    if (!element) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.1 }
+    )
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, isVisible }
+}
 
 // 1) Time Tracking
 const timeTrackingSVG = (
@@ -88,24 +111,9 @@ const timeTrackingSVG = (
         y="0%"
         filterUnits="objectBoundingBox"
       >
-        <feTurbulence
-          baseFrequency="0.6"
-          numOctaves="5"
-          result="out1"
-          seed="4"
-        />
-        <feComposite
-          in="out1"
-          in2="SourceGraphic"
-          operator="in"
-          result="out2"
-        />
-        <feBlend
-          in="SourceGraphic"
-          in2="out2"
-          mode="overlay"
-          result="out3"
-        />
+        <feTurbulence baseFrequency="0.6" numOctaves="5" result="out1" seed="4" />
+        <feComposite in="out1" in2="SourceGraphic" operator="in" result="out2" />
+        <feBlend in="SourceGraphic" in2="out2" mode="overlay" result="out3" />
       </filter>
     </defs>
   </svg>
@@ -138,11 +146,7 @@ const projectManagementSVG = (
       </mask>
       <g mask="url(#cs_mask_1_moon-1)">
         <path fill="#fff" d="M200 0H0v200h200V0z" />
-        <path
-          fill="#FFC700"
-          fillOpacity="0.331"
-          d="M200 0H0v200h200V0z"
-        />
+        <path fill="#FFC700" fillOpacity="0.331" d="M200 0H0v200h200V0z" />
         <g filter="url(#filter0_f_748_4554)">
           <path fill="#FFC700" d="M206 82.875H53.25v120.75H206V82.875z" />
           <path fill="#1BC47D" d="M148 17H15v118h133V17z" />
@@ -188,24 +192,9 @@ const projectManagementSVG = (
         y="0%"
         filterUnits="objectBoundingBox"
       >
-        <feTurbulence
-          baseFrequency="0.6"
-          numOctaves="5"
-          result="out1"
-          seed="4"
-        />
-        <feComposite
-          in="out1"
-          in2="SourceGraphic"
-          operator="in"
-          result="out2"
-        />
-        <feBlend
-          in="SourceGraphic"
-          in2="out2"
-          mode="overlay"
-          result="out3"
-        />
+        <feTurbulence baseFrequency="0.6" numOctaves="5" result="out1" seed="4" />
+        <feComposite in="out1" in2="SourceGraphic" operator="in" result="out2" />
+        <feBlend in="SourceGraphic" in2="out2" mode="overlay" result="out3" />
       </filter>
     </defs>
   </svg>
@@ -365,11 +354,7 @@ const teamCollaborationSVG = (
       </mask>
       <g mask="url(#cs_mask_1_misc-1)">
         <path fill="#fff" d="M200 0H0v200h200V0z" />
-        <path
-          fill="#FFF9C5"
-          fillOpacity="0.44"
-          d="M200 0H0v200h200V0z"
-        />
+        <path fill="#FFF9C5" fillOpacity="0.44" d="M200 0H0v200h200V0z" />
         <g filter="url(#filter0_f_748_5063)">
           <path
             fill="#00F0FF"
@@ -399,11 +384,7 @@ const teamCollaborationSVG = (
         filterUnits="userSpaceOnUse"
       >
         <feFlood floodOpacity="0" result="BackgroundImageFix" />
-        <feBlend
-          in="SourceGraphic"
-          in2="BackgroundImageFix"
-          result="shape"
-        />
+        <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
         <feGaussianBlur
           result="effect1_foregroundBlur_748_5063"
           stdDeviation="30"
@@ -486,6 +467,9 @@ const Features: React.FC<FeaturesProps> = () => {
     }
   ];
 
+  // Use custom scroll-triggered fade-up hook
+  const fade = useFadeUp();
+
   return (
     <section className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -498,7 +482,12 @@ const Features: React.FC<FeaturesProps> = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div
+          ref={fade.ref}
+          className={`grid md:grid-cols-3 gap-8 transform transition-all duration-700 ${
+            fade.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
+        >
           {/* Left Column */}
           <div className="space-y-8">
             {leftFeatures.map((feature) => (

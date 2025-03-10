@@ -12,15 +12,13 @@ export const SpecialFeatureCard: React.FC<SpecialFeatureCardProps> = ({
   image
 }) => {
   return (
-    // Outer container
-    <div className="relative p-[1px] rounded-xl h-full flex flex-col bg-neutral-500 overflow-hidden">
+    // Outer container with white background
+    <div className="relative p-[1px] rounded-xl h-full flex flex-col bg-white overflow-hidden">
       
-      {/* Inner container with a 1px black inset stroke */}
+      {/* Inner container with a 1px black inset stroke and white background */}
       <div
-        className="relative bg-neutral-600 p-6 rounded-xl flex flex-col h-full overflow-hidden"
-        style={{
-          boxShadow: 'inset 0 0 0 1px #000'
-        }}
+        className="relative bg-white p-6 rounded-xl flex flex-col h-full overflow-hidden"
+        style={{ boxShadow: 'inset 0 0 0 1px #000' }}
       >
         {/*
           For screens below 1280px (default), the icon and title stack vertically.
@@ -102,10 +100,10 @@ export const SpecialFeatureCard: React.FC<SpecialFeatureCardProps> = ({
             </defs>
           </svg>
 
-          <h3 className="text-2xl font-semibold text-white">{title}</h3>
+          <h3 className="text-2xl font-semibold text-black">{title}</h3>
         </div>
 
-        <p className="mt-3 mb-6 text-gray-200">{description}</p>
+        <p className="mt-3 mb-6 text-gray-700">{description}</p>
 
         <img 
           src={image} 
@@ -113,17 +111,8 @@ export const SpecialFeatureCard: React.FC<SpecialFeatureCardProps> = ({
           className="w-full object-cover mt-auto rounded-xl" 
         />
       </div>
-      
-      {/* Optional: remove if you no longer need the noise animation */}
-      <style jsx>{`
-        @keyframes noise {
-          0% { background-position: 0 0; }
-          100% { background-position: 100% 100%; }
-        }
-        .animate-noise {
-          animation: noise 1s steps(10) infinite;
-        }
-      `}</style>
     </div>
   )
 }
+
+export default SpecialFeatureCard
