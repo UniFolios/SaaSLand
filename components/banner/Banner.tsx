@@ -1,11 +1,13 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 
 interface BannerProps {}
 
 const BannerFramerStyle: React.FC<BannerProps> = () => {
   const [scrollPos, setScrollPos] = useState(0)
+  const contentRef = useRef<HTMLDivElement | null>(null)
+  const [inView, setInView] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +28,23 @@ const BannerFramerStyle: React.FC<BannerProps> = () => {
     transformOrigin: 'center center',
   }
 
+  // New: Use IntersectionObserver to trigger fade/slide for main content once in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.2 }
+    )
+    if (contentRef.current) {
+      observer.observe(contentRef.current)
+    }
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section className="relative overflow-hidden min-h-screen pt-28 pb-80 text-white">
       {/* Background Video */}
@@ -38,7 +57,12 @@ const BannerFramerStyle: React.FC<BannerProps> = () => {
       <div className="absolute inset-0 bg-black/60 z-0" />
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center space-y-6">
+      <div
+        ref={contentRef}
+        className={`relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center space-y-6 transition-all duration-700 ${
+          inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         {/* Brutalist Heading - PERFECT, UNTOUCHED */}
         <h1 className="font-extrabold tracking-tight mt-10 sm:mt-20 text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] leading-[1.1]">
           Future of SaaS
@@ -71,7 +95,7 @@ const BannerFramerStyle: React.FC<BannerProps> = () => {
           display: inline-block;
           border: 1px solid #d1d5db; /* stone-300 */
           border-radius: 9999px;
-          padding: 1px; /* increased padding for more space from sides */
+          padding: 1px;
           transition: all 0.2s;
         }
         .cta-container::before {
@@ -90,7 +114,7 @@ const BannerFramerStyle: React.FC<BannerProps> = () => {
         }
         .cta-container:hover::before {
           opacity: 1;
-          transform: scale(1.001); /* thicker appearance on hover */
+          transform: scale(1.001);
           animation: gradientAnimation 0.8s linear infinite;
         }
         @keyframes gradientAnimation {
