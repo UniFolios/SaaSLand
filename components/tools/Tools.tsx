@@ -120,7 +120,7 @@ const Tools: React.FC<BaseComponentProps> = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section heading */}
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16">
-          Integrated with tools that you  <br /><br /> Know 😎 <br /><br /> & <br /> <br /> Love 😍
+         Tools that you Know & Love
         </h2>
         
         {/* Tools container */}
