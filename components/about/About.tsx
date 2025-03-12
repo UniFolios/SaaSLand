@@ -1,10 +1,35 @@
-"use client";
+'use client'
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 export default function About() {
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (contentRef.current) {
+      observer.observe(contentRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="relative pt-3 pb-24 bg-black text-white">
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 grid md:grid-cols-2 gap-16 items-center">
+      <div
+        ref={contentRef}
+        className={`relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 grid md:grid-cols-2 gap-16 items-center transition-all duration-700 ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
         {/* Left Column - Static Image */}
         <div className="relative overflow-hidden rounded-xl">
           <Image
@@ -23,7 +48,8 @@ export default function About() {
             Atomic component system
           </h2>
           <p className="text-gray-400 text-lg leading-relaxed">
-            Like tiny pieces of a puzzle, our components are designed to be combined into larger sections.
+            Like tiny pieces of a puzzle, our components are designed to be
+            combined into larger sections.
           </p>
 
           {/* CTA Button */}
@@ -57,7 +83,7 @@ export default function About() {
         .cta-container {
           position: relative;
           display: inline-block;
-          border: 1px solid #d1d5db; /* stone-300 */
+          border: 1px solid #d1d5db;
           border-radius: 9999px;
           padding: 1px;
           cursor: pointer;
