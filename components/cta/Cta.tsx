@@ -5,23 +5,59 @@ interface CtaProps extends BaseComponentProps {}
 
 const Cta: React.FC<CtaProps> = () => {
   return (
-    <section className="py-32 bg-[#140a3e]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mx-auto text-center text-white">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            Are you excited<br />to try?
+    <section className="py-32 bg-black text-white">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-5xl font-extrabold tracking-tight mb-4">
+            Get Started
           </h2>
-          <h3 className="text-2xl mb-6">Join the waiting list</h3>
-          <p className="text-gray-300 text-lg mb-10">
-            Passage its ten hearted removal. Preference any astonished unreserved Mrs. Prosperous understood an uncommonly do.
+          <p className="text-gray-400 text-lg mb-8">
+            Unlock exclusive features and elevate your experience.
           </p>
-          <button className="bg-white text-[#140a3e] px-8 py-4 rounded-md font-medium hover:bg-gray-100 transition-colors">
-            Get early access
-          </button>
+          <div className="flex justify-center">
+            <a
+              href="/learn-more"
+              className="cta-container relative inline-block rounded-full"
+            >
+              <span className="cta-button relative z-10 bg-white text-black font-semibold px-6 py-3 text-[1rem] rounded-full flex items-center gap-2">
+                Learn More
+                <svg
+                  className="cta-arrow w-5 h-5 transition-transform duration-300 ease-out"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="M12 5l7 7-7 7" />
+                </svg>
+              </span>
+            </a>
+          </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .cta-container {
+          position: relative;
+          display: inline-block;
+          border: 1px solid #d1d5db; /* stone-300 */
+          border-radius: 9999px;
+          padding: 1px;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+        }
+        .cta-container:hover .cta-arrow {
+          transform: translateX(5px) rotate(0deg);
+        }
+        .cta-arrow {
+          transform: rotate(-45deg);
+        }
+      `}</style>
     </section>
   )
 }
 
-export default Cta 
+export default Cta
