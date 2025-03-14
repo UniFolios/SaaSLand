@@ -44,7 +44,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 
 If you see this, you're ready to start turning this template into your own **SaaS marketing page** 👌
 
-![alt text](readme-img/readme-img/image-1.png)
+![alt text](readme-img/image-1.png)
 ##
 
 <br>
