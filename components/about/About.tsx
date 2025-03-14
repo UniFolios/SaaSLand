@@ -23,7 +23,7 @@ export default function About() {
   }, []);
 
   return (
-    <section className="relative pt-3 pb-24 bg-black text-white">
+    <section id="about" className="relative pt-3 pb-24 bg-black text-white">
       <div
         ref={contentRef}
         className={`relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 grid md:grid-cols-2 gap-16 items-center transition-all duration-700 ${

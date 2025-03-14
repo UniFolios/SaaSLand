@@ -101,7 +101,7 @@ export default function Navbar() {
           {['About', 'Features', 'Pricing', 'Contact'].map((item) => (
             <Link
               key={item}
-              href={`/${item.toLowerCase()}`}
+              href={`#${item.toLowerCase()}`}
               className="relative text-base font-medium transition-all duration-300 ease-out group"
             >
               {item}
@@ -146,7 +146,7 @@ export default function Navbar() {
             {['About', 'Features', 'Pricing', 'Contact'].map((item) => (
               <Link
                 key={item}
-                href={`/${item.toLowerCase()}`}
+                href={`#${item.toLowerCase()}`}
                 className="relative text-lg px-2 py-1 rounded transition-all duration-300 ease-out group hover:bg-neutral-100"
                 onClick={() => setIsOpen(false)}
               >
