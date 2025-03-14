@@ -44,7 +44,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the r
 
 If you see this, you're ready to start turning this template into your own **SaaS marketing page** 👌
 
-![alt text](image-1.png)
+![alt text](readme-img/readme-img/image-1.png)
 ##
 
 <br>
@@ -62,13 +62,13 @@ But how do you do this?
 
 - Use your editor’s quick search feature to find Tailwind classes. You can also try ´ctrl + k´ / 'cmd + k'
  
-  ![alt text](image-3.png)
+  ![alt text](readme-img/image-3.png)
 
 For example, if you want to change colors:
 
 - Scroll through the search results and look for "customizing colors".
 
-  ![alt text](image-4.png)
+  ![alt text](readme-img/image-4.png)
 
 <br>
 
@@ -80,8 +80,8 @@ Adding the class `background-slate-50` to an element will apply the slate-50 bac
 
 <br>
 
-  ![alt text](image-5.png)
-  ![alt text](image-6.png)
+  ![alt text](readme-img/image-5.png)
+  ![alt text](readme-img/image-6.png)
 
 #### ✨ Important Hint:
 If you ever forget the name of a CSS flex setting, don't waste time scrolling through the documentation. Instead, ask your coding assistant (GPT, Copilot, Gemini) for help—it saves time and frustration!
@@ -93,58 +93,58 @@ Tailwind is simpler than it seems; you’ll grasp the essentials in 10-15 minute
 - **Banner** 🏠  
   A section featuring a bold headline, a concise subheading, a compelling call-to-action button, and a dynamic background (vide but you can change it with an img also).  
 
-  ![alt text](image-7.png)
+  ![alt text](readme-img/image-7.png)
   <br><br>
 
 
 - **Clients** 🔍  
   As clear as the name the companies that you worked with represented in a fancy way with a constant sliding and grayscale.  
 
-  ![alt text](image-9.png)
+  ![alt text](readme-img/image-9.png)
   <br><br>
 
 - **About** 🙎‍♂️  
   A section that explains the purpose of your SaaS product, highlights its benefits, and may include a brief introduction along with engaging visuals.
 
-  ![alt text](image-10.png)
+  ![alt text](readme-img/image-10.png)
   <br><br>
 
 - **Features** 🔄  
   The part that you showcase best features of your product. 
 
-  ![alt text](image-11.png)
+  ![alt text](readme-img/image-11.png)
   <br><br>
 
 - **Tools** 🛠  
   A showcase of the technologies and tools that power your SaaS product. 
 
-  ![alt text](image-12.png) 
+  ![alt text](readme-img/image-12.png) 
   <br><br>
 
 - **How It Works** 🔄  
   A step-by-step guide that demonstrates how your product operates, making it easy for visitors to understand its benefits. 
 
-  ![alt text](image-13.png) 
+  ![alt text](readme-img/image-13.png) 
   <br><br>
 
 - **Pricing** 💰  
   A section displaying various pricing plans and packages, helping visitors choose the option that best fits their needs.
 
-  ![alt text](image-14.png) 
-  ![alt text](image-15.png)
+  ![alt text](readme-img/image-14.png) 
+  ![alt text](readme-img/image-15.png)
   <br><br>
 
 - **Testimonials** 💬  
   A carousel or slider showcasing feedback and reviews from satisfied customers.
 
-  ![alt text](image-16.png)  
+  ![alt text](readme-img/image-16.png)  
   <br><br>
 
 
 - **CTA** 🚀  
   A compelling call-to-action section encouraging visitors to sign up or try your product. 
   
-  ![alt text](image-17.png) 
+  ![alt text](readme-img/image-17.png) 
   <br><br>
 
 - **Contact** 📞  
@@ -154,18 +154,18 @@ Tailwind is simpler than it seems; you’ll grasp the essentials in 10-15 minute
 - **Footer** 🔗  
   The bottom navigation area with additional links, social media icons, and any other relevant information. 
 
-  ![alt text](image-18.png) 
+  ![alt text](readme-img/image-18.png) 
   <br><br>
 
 #### The section names and their content may seem complicated in the project files. No worries, let's check the folder structure together:
 
-![alt text](image-19.png)
+![alt text](readme-img/image-19.png)
 
 <br>
 
 Inside the app folder, you'll find the global files. These files set up the foundational structure, styles, and layouts used across the entire application.
 
-![alt text](image-21.png)
+![alt text](readme-img/image-21.png)
 
 <br>
 
