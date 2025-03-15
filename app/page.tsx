@@ -34,7 +34,7 @@ export default function Home() {
             const progress = Math.min(timeElapsed / duration, 1)
             
             // Easing function for smoother animation
-            const easeInOutCubic = progress => {
+            const easeInOutCubic = (progress: number) => {
               return progress < 0.5
                 ? 4 * progress * progress * progress
                 : 1 - Math.pow(-2 * progress + 2, 3) / 2
