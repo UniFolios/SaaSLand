@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { BaseComponentProps } from '../types'
 import { smoothScrollTo } from '@/utils/smoothScroll'
+import { saveMessage } from '@/utils/saveMessage'
 
 interface ContactProps extends BaseComponentProps {}
 
@@ -79,8 +80,7 @@ const Contact: React.FC<ContactProps> = () => {
     setIsSubmitting(true)
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      await saveMessage(formData)
       setSubmitSuccess(true)
       setFormData({ name: '', email: '', message: '' })
       
@@ -89,7 +89,10 @@ const Contact: React.FC<ContactProps> = () => {
         setSubmitSuccess(false)
       }, 5000)
     } catch (error) {
-      setErrors({ message: 'Failed to send message. Please try again.' })
+      setErrors({ 
+        message: 'Failed to save message. Please try again.' 
+      })
+      console.error('Save error:', error)
     } finally {
       setIsSubmitting(false)
     }
