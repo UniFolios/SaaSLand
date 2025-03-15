@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
+import { smoothScrollTo } from '@/utils/smoothScroll'
 
 interface BannerProps {}
 
@@ -73,9 +74,12 @@ const BannerFramerStyle: React.FC<BannerProps> = () => {
           Publish your professionally designed, fully customized SaaS in a day.
         </p>
 
-        {/* CTA Button (UNCHANGED) */}
+        {/* CTA Button */}
         <div className="cta-container relative inline-block rounded-full">
-          <button className="cta-button relative z-10 bg-white text-stone-900 font-semibold px-6 py-2 sm:px-5 sm:py-3 text-[0.95rem] sm:text-[1.05rem] rounded-full">
+          <button 
+            onClick={() => smoothScrollTo('contact')}
+            className="cta-button relative z-10 bg-white text-stone-900 font-semibold px-6 py-2 sm:px-5 sm:py-3 text-[0.95rem] sm:text-[1.05rem] rounded-full"
+          >
             Start for free
           </button>
         </div>

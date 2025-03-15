@@ -1,18 +1,30 @@
 'use client'
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { smoothScrollTo } from '@/utils/smoothScroll'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const toggleMenu = () => setIsOpen(!isOpen)
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    smoothScrollTo('banner')
+  }
+
+  const handleTryItClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    smoothScrollTo('pricing')
+  }
 
   return (
     <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
       <div className="navbar-container flex items-center justify-between bg-black text-neutral-950 rounded-full px-4 py-2 shadow-sm">
         {/* Unique Logo: CoolShap.es "star-1" shape embedded; rotates on hover */}
         <Link
-          href="/"
+          href="#banner"
           className="flex-none ml-[-2px] mr-8 hover:rotate-45 hover:opacity-90 bg-black hover:bg-black rounded-full p-0.5 transition-transform duration-300 ease-out"
+          onClick={handleLogoClick}
         >
           <svg
             className="h-10"
@@ -110,11 +122,12 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Desktop Button */}
+        {/* Desktop Button with smooth scroll */}
         <div className="hidden md:flex flex-none ml-8">
           <Link
-            href="/early-access"
+            href="#pricing"
             className="bg-gradient-to-br from-neutral-950 to-neutral-900 text-white px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-out hover:rotate-3 hover:opacity-90"
+            onClick={handleTryItClick}
           >
             Try it!
           </Link>
@@ -139,7 +152,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu with smooth scroll for Try it button */}
       {isOpen && (
         <div className="md:hidden bg-white border border-neutral-300 rounded-lg mt-2 px-4 pt-4 pb-6">
           <nav className="flex flex-col space-y-4">
@@ -156,9 +169,13 @@ export default function Navbar() {
             ))}
             <hr className="border-neutral-300" />
             <Link
-              href="/early-access"
+              href="#pricing"
               className="bg-gradient-to-r from-neutral-900 to-neutral-700 text-white px-4 py-2 rounded-full text-sm font-medium text-center transition-all duration-300 ease-out relative overflow-hidden group"
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => {
+                e.preventDefault()
+                setIsOpen(false)
+                smoothScrollTo('pricing')
+              }}
             >
               Try it!
             </Link>
