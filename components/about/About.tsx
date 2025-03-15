@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { smoothScrollTo } from '@/utils/smoothScroll'
 
 export default function About() {
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -23,7 +24,7 @@ export default function About() {
   }, []);
 
   return (
-    <section className="relative pt-3 pb-24 bg-black text-white">
+    <section id="about" className="relative pt-3 pb-24 bg-black text-white">
       <div
         ref={contentRef}
         className={`relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 grid md:grid-cols-2 gap-16 items-center transition-all duration-700 ${
@@ -55,8 +56,12 @@ export default function About() {
           {/* CTA Button */}
           <div className="flex">
             <a
-              href="/learn-more"
+              href="#banner"
               className="cta-container relative inline-block rounded-full"
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollTo('banner');
+              }}
             >
               <span className="cta-button relative z-10 bg-white text-black font-semibold px-6 py-3 text-[0.95rem] sm:text-[1.05rem] rounded-full flex items-center gap-2">
                 Learn More

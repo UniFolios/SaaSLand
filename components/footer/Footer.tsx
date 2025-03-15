@@ -1,5 +1,7 @@
+'use client'
 import React from 'react'
 import { BaseComponentProps } from '../types'
+import { smoothScrollTo } from '@/utils/smoothScroll'
 
 const Footer: React.FC<BaseComponentProps> = () => {
   return (
@@ -20,14 +22,14 @@ const Footer: React.FC<BaseComponentProps> = () => {
           <div>
             <h3 className="text-xl font-semibold mb-6 text-white">Pages</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-4">
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">Home</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">About</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">Features</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">Pricing</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">Blog</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">Contact</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">Support</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">FAQ</a>
+              <a href="#banner" className="text-white hover:text-gray-300 transition-colors">Home</a>
+              <a href="#about" className="text-white hover:text-gray-300 transition-colors">About</a>
+              <a href="#features" className="text-white hover:text-gray-300 transition-colors">Features</a>
+              <a href="#pricing" className="text-white hover:text-gray-300 transition-colors">Pricing</a>
+              <a href="#tools" className="text-white hover:text-gray-300 transition-colors">Tools</a>
+              <a href="#contact" className="text-white hover:text-gray-300 transition-colors">Contact</a>
+              <a href="#testimonials" className="text-white hover:text-gray-300 transition-colors">Testimonials</a>
+              <a href="#howItWorks" className="text-white hover:text-gray-300 transition-colors">How it Works</a>
             </div>
           </div>
         </div>
@@ -67,42 +69,39 @@ const Footer: React.FC<BaseComponentProps> = () => {
             <div>
               <h3 className="text-xl font-semibold mb-6 text-white">Follow us</h3>
               <div className="flex gap-4">
-                {/* Facebook */}
-                <a 
-                  href="#"
+                <button 
+                  onClick={() => smoothScrollTo('banner')}
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
                 >
-                  <svg fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5 text-white">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 5 3.66 9.12 8.44 9.88v-6.99H7.9v-2.89h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.89h-2.34V21.88C18.34 21.12 22 17 22 12z"/>
                   </svg>
-                </a>
-                {/* Twitter */}
-                <a 
-                  href="#"
+                </button>
+                <button 
+                  onClick={() => smoothScrollTo('banner')}
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
                 >
-                  <svg fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5 text-white">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M22.46 6c-.77.35-1.6.59-2.46.69a4.28 4.28 0 001.88-2.36 8.52 8.52 0 01-2.7 1.03 4.24 4.24 0 00-7.22 3.86A12.04 12.04 0 013 4.89a4.24 4.24 0 001.31 5.66 4.21 4.21 0 01-1.92-.53v.05a4.24 4.24 0 003.4 4.15 4.27 4.27 0 01-1.91.07 4.25 4.25 0 003.97 2.95A8.5 8.5 0 012 19.54a12.02 12.02 0 006.29 1.84c7.55 0 11.68-6.26 11.68-11.68 0-.18-.01-.35-.02-.53A8.36 8.36 0 0022.46 6z"/>
                   </svg>
-                </a>
-                {/* Dribbble */}
-                <a 
-                  href="#"
+                </button>
+                <button 
+                  onClick={() => smoothScrollTo('banner')}
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
                 >
-                  <svg fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5 text-white">
-                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.99 3.657 9.128 8.438 9.878-.117-.842-.222-2.137.047-3.058.242-.833 1.562-5.33 1.562-5.33s-.398-.796-.398-1.972c0-1.847 1.072-3.226 2.404-3.226 1.134 0 1.68.851 1.68 1.873 0 1.141-.727 2.846-1.1 4.427-.312 1.313.662 2.381 1.963 2.381 2.355 0 4.165-2.488 4.165-6.082 0-3.174-2.287-5.401-5.549-5.401-3.782 0-6.012 2.834-6.012 5.766 0 1.146.44 2.374 0 2.709 0 0-.793 3.236-.985 3.997-.29 1.085-.957 2.441-1.431 3.262A9.99 9.99 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
                   </svg>
-                </a>
-                {/* Instagram */}
-                <a 
-                  href="#"
+                </button>
+                <button 
+                  onClick={() => smoothScrollTo('banner')}
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
                 >
-                  <svg fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5 text-white">
-                    <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                    <circle cx="4" cy="4" r="2"/>
                   </svg>
-                </a>
+                </button>
               </div>
             </div>
           </div>

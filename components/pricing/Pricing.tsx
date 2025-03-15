@@ -103,7 +103,7 @@ const Pricing: React.FC<PricingProps> = () => {
   const [isYearly, setIsYearly] = useState(true)
 
   return (
-    <section className="py-16 bg-black text-white">
+    <section id="pricing" className="py-16 bg-black text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Title only */}
