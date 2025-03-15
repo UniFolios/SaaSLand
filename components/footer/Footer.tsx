@@ -20,14 +20,14 @@ const Footer: React.FC<BaseComponentProps> = () => {
           <div>
             <h3 className="text-xl font-semibold mb-6 text-white">Pages</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-4">
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">Home</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">About</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">Features</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">Pricing</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">Blog</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">Contact</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">Support</a>
-              <a href="#" className="text-white hover:text-gray-300 transition-colors">FAQ</a>
+              <a href="#banner" className="text-white hover:text-gray-300 transition-colors">Home</a>
+              <a href="#about" className="text-white hover:text-gray-300 transition-colors">About</a>
+              <a href="#features" className="text-white hover:text-gray-300 transition-colors">Features</a>
+              <a href="#pricing" className="text-white hover:text-gray-300 transition-colors">Pricing</a>
+              <a href="#tools" className="text-white hover:text-gray-300 transition-colors">Tools</a>
+              <a href="#contact" className="text-white hover:text-gray-300 transition-colors">Contact</a>
+              <a href="#testimonials" className="text-white hover:text-gray-300 transition-colors">Testimonials</a>
+              <a href="#howItWorks" className="text-white hover:text-gray-300 transition-colors">How it Works</a>
             </div>
           </div>
         </div>
