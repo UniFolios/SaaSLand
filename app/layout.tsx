@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
+import { headers } from 'next/headers'
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 
@@ -13,12 +14,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const headersList = headers()
+  const isAdmin = headersList.get('x-route-type') === 'admin'
+
   return (
     <html lang="en">
       <body>
-        <Navbar />
+        {!isAdmin && <Navbar />}
         <main>{children}</main>
-        <Footer />
+        {!isAdmin && <Footer />}
       </body>
     </html>
   )
