@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { BaseComponentProps } from '../types'
+import { smoothScrollTo } from '@/utils/smoothScroll'
 
 interface CtaProps extends BaseComponentProps {}
 
@@ -21,34 +22,7 @@ const Cta: React.FC<CtaProps> = () => {
               className="cta-container relative inline-block rounded-full"
               onClick={(e) => {
                 e.preventDefault();
-                const element = document.getElementById('banner');
-                if (element) {
-                  const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-                  const offsetPosition = elementPosition - 80;
-                  const duration = 1000;
-                  const startPosition = window.scrollY;
-                  const distance = offsetPosition - startPosition;
-                  let startTime: number;
-
-                  const animation = (currentTime: number) => {
-                    if (!startTime) startTime = currentTime;
-                    const timeElapsed = currentTime - startTime;
-                    const progress = Math.min(timeElapsed / duration, 1);
-                    const easeInOutCubic = (t: number) => {
-                      return t < 0.5
-                        ? 4 * t * t * t
-                        : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                    };
-
-                    window.scrollTo(0, startPosition + (distance * easeInOutCubic(progress)));
-
-                    if (timeElapsed < duration) {
-                      requestAnimationFrame(animation);
-                    }
-                  }
-
-                  requestAnimationFrame(animation);
-                }
+                smoothScrollTo('banner');
               }}
             >
               <span className="cta-button relative z-10 bg-white text-black font-semibold px-6 py-3 text-[1rem] rounded-full flex items-center gap-2">

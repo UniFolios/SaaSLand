@@ -1,43 +1,9 @@
 'use client'
 import React from 'react'
 import { BaseComponentProps } from '../types'
+import { smoothScrollTo } from '@/utils/smoothScroll'
 
 interface ContactProps extends BaseComponentProps {}
-
-const smoothScrollTo = (elementId: string) => {
-  const element = document.getElementById(elementId);
-  if (element) {
-    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-    const offsetPosition = elementPosition - 80;
-    const duration = 1000;
-    const startPosition = window.scrollY;
-    const distance = offsetPosition - startPosition;
-    let startTime: number | null = null;
-
-    const animation = (currentTime: number) => {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1);
-
-      const easeInOutCubic = (t: number) => {
-        return t < 0.5
-          ? 4 * t * t * t
-          : 1 - Math.pow(-2 * t + 2, 3) / 2;
-      };
-
-      window.scrollTo({
-        top: startPosition + (distance * easeInOutCubic(progress)),
-        behavior: 'auto'
-      });
-
-      if (timeElapsed < duration) {
-        requestAnimationFrame(animation);
-      }
-    };
-
-    requestAnimationFrame(animation);
-  }
-};
 
 const Contact: React.FC<ContactProps> = () => {
   return (
@@ -82,19 +48,39 @@ const Contact: React.FC<ContactProps> = () => {
             <div className="mt-8">
               <h3 className="text-lg font-semibold mb-4">Follow us</h3>
               <div className="flex gap-4">
-                {['facebook', 'twitter', 'instagram', 'linkedin'].map((social) => (
-                  <button 
-                    key={social}
-                    className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200"
-                    onClick={() => smoothScrollTo('banner')}
-                  >
-                    <img 
-                      src={`https://placehold.co/20x20`}
-                      alt={social}  
-                      className="w-5 h-5"
-                    />
-                  </button>
-                ))}
+                <button 
+                  onClick={() => smoothScrollTo('banner')}
+                  className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 5 3.66 9.12 8.44 9.88v-6.99H7.9v-2.89h2.54V9.41c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.89h-2.34V21.88C18.34 21.12 22 17 22 12z"/>
+                  </svg>
+                </button>
+                <button 
+                  onClick={() => smoothScrollTo('banner')}
+                  className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22.46 6c-.77.35-1.6.59-2.46.69a4.28 4.28 0 001.88-2.36 8.52 8.52 0 01-2.7 1.03 4.24 4.24 0 00-7.22 3.86A12.04 12.04 0 013 4.89a4.24 4.24 0 001.31 5.66 4.21 4.21 0 01-1.92-.53v.05a4.24 4.24 0 003.4 4.15 4.27 4.27 0 01-1.91.07 4.25 4.25 0 003.97 2.95A8.5 8.5 0 012 19.54a12.02 12.02 0 006.29 1.84c7.55 0 11.68-6.26 11.68-11.68 0-.18-.01-.35-.02-.53A8.36 8.36 0 0022.46 6z"/>
+                  </svg>
+                </button>
+                <button 
+                  onClick={() => smoothScrollTo('banner')}
+                  className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+                  </svg>
+                </button>
+                <button 
+                  onClick={() => smoothScrollTo('banner')}
+                  className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+                    <circle cx="4" cy="4" r="2"/>
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
