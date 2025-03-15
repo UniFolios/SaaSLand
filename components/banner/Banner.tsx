@@ -46,7 +46,7 @@ const BannerFramerStyle: React.FC<BannerProps> = () => {
   }, [])
 
   return (
-    <section className="relative overflow-hidden min-h-screen pt-28 pb-80 text-white">
+    <section className="relative overflow-hidden min-h-screen pt-28 pb-80 text-white" id="banner">
       {/* Background Video */}
       <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0">
         <source src="/video/banner_video.mp4" type="video/mp4" />

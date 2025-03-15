@@ -1,7 +1,43 @@
+'use client'
 import React from 'react'
 import { BaseComponentProps } from '../types'
 
 interface ContactProps extends BaseComponentProps {}
+
+const smoothScrollTo = (elementId: string) => {
+  const element = document.getElementById(elementId);
+  if (element) {
+    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - 80;
+    const duration = 1000;
+    const startPosition = window.scrollY;
+    const distance = offsetPosition - startPosition;
+    let startTime: number | null = null;
+
+    const animation = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+
+      const easeInOutCubic = (t: number) => {
+        return t < 0.5
+          ? 4 * t * t * t
+          : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      };
+
+      window.scrollTo({
+        top: startPosition + (distance * easeInOutCubic(progress)),
+        behavior: 'auto'
+      });
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
+  }
+};
 
 const Contact: React.FC<ContactProps> = () => {
   return (
@@ -47,17 +83,17 @@ const Contact: React.FC<ContactProps> = () => {
               <h3 className="text-lg font-semibold mb-4">Follow us</h3>
               <div className="flex gap-4">
                 {['facebook', 'twitter', 'instagram', 'linkedin'].map((social) => (
-                  <a 
+                  <button 
                     key={social}
-                    href="#" 
                     className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200"
+                    onClick={() => smoothScrollTo('banner')}
                   >
                     <img 
                       src={`https://placehold.co/20x20`}
-                      alt={social}
+                      alt={social}  
                       className="w-5 h-5"
                     />
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>
