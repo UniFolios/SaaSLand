@@ -55,7 +55,7 @@ export default function About() {
           {/* CTA Button */}
           <div className="flex">
             <a
-              href="/learn-more"
+              href="#banner"
               className="cta-container relative inline-block rounded-full"
             >
               <span className="cta-button relative z-10 bg-white text-black font-semibold px-6 py-3 text-[0.95rem] sm:text-[1.05rem] rounded-full flex items-center gap-2">
