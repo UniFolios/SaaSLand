@@ -30,6 +30,7 @@ export default function AdminDashboard() {
   const [visits, setVisits] = useState<VisitData[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null)
+  const [messageToDelete, setMessageToDelete] = useState<string | null>(null)
   const router = useRouter()
 
   useEffect(() => {
@@ -77,6 +78,8 @@ export default function AdminDashboard() {
       }
     } catch (error) {
       console.error('Failed to delete message:', error)
+    } finally {
+      setMessageToDelete(null)
     }
   }
 
@@ -100,6 +103,37 @@ export default function AdminDashboard() {
       console.error('Logout failed:', error)
     }
   }
+
+  const DeleteConfirmDialog = ({ messageId, onConfirm, onCancel }: { 
+    messageId: string, 
+    onConfirm: () => void, 
+    onCancel: () => void 
+  }) => (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white rounded-lg p-6 max-w-sm mx-4">
+        <h3 className="text-lg font-semibold text-neutral-900 mb-4">
+          Delete Message
+        </h3>
+        <p className="text-neutral-600 mb-6">
+          Are you sure you want to delete this message? This action cannot be undone.
+        </p>
+        <div className="flex justify-end gap-4">
+          <button
+            onClick={onCancel}
+            className="px-4 py-2 text-neutral-600 hover:text-neutral-800 transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={onConfirm}
+            className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  )
 
   if (isLoading) {
     return (
@@ -304,7 +338,7 @@ export default function AdminDashboard() {
                         {new Date(msg.timestamp).toLocaleString()}
                       </span>
                       <button
-                        onClick={() => handleDeleteMessage(msg._id)}
+                        onClick={() => setMessageToDelete(msg._id)}
                         className="text-red-400 hover:text-red-600 transition-colors"
                         title="Delete message"
                       >
@@ -321,6 +355,13 @@ export default function AdminDashboard() {
           </div>
         </div>
       </div>
+      {messageToDelete && (
+        <DeleteConfirmDialog
+          messageId={messageToDelete}
+          onConfirm={() => handleDeleteMessage(messageToDelete)}
+          onCancel={() => setMessageToDelete(null)}
+        />
+      )}
     </div>
   )
 } 
