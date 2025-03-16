@@ -335,11 +335,6 @@ export default function AdminDashboard() {
                     </span>
                   </div>
                   <p className="text-neutral-800">{msg.message}</p>
-                  <div className="mt-2 flex items-center text-sm text-neutral-500 space-x-4">
-                    <span>📱 {msg.deviceInfo.platform}</span>
-                    <span>🌐 {msg.deviceInfo.userAgent.split(' ')[0]}</span>
-                    <span>🌍 {msg.deviceInfo.language}</span>
-                  </div>
                 </div>
               ))}
             </div>

@@ -1,0 +1,30 @@
+=== New Message ===
+Time: 3/16/2025, 7:10:51 PM
+Name: Shovan Kumar Das
+Email: shovondas26@gmail.com
+Message: Hello from saasland
+
+Device Info:
+- Platform: Win32
+- Browser: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+- Language: en-US
+- Screen: 1920x1200
+
+Location: 65.060864, 25.4672896
+==================
+
+=== New Message ===
+Time: 3/16/2025, 7:18:50 PM
+Name: Rachna Kumar
+Email: rachna@gmail.com
+Message: How can I purchase this template?
+
+Device Info:
+- Platform: Win32
+- Browser: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+- Language: en-US
+- Screen: 1920x1200
+
+Location: 65.060864, 25.4672896
+==================
+

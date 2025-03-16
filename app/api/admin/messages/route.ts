@@ -24,22 +24,37 @@ export async function GET(req: Request) {
       .filter(Boolean)
       .map(block => {
         const lines = block.trim().split('\n')
-        return {
-          timestamp: new Date(lines[1].replace('Time: ', '')).toISOString(),
-          name: lines[2].replace('Name: ', ''),
-          email: lines[3].replace('Email: ', ''),
-          message: lines[4].replace('Message: ', ''),
-          deviceInfo: {
-            platform: lines[7].replace('- Platform: ', ''),
-            userAgent: lines[8].replace('- Browser: ', ''),
-            language: lines[9].replace('- Language: ', ''),
-            screenSize: lines[10].replace('- Screen: ', '')
+        const messageData: any = {}
+
+        lines.forEach(line => {
+          if (line.includes('Time: ')) messageData.timestamp = new Date(line.replace('Time: ', '')).toISOString()
+          if (line.includes('Name: ')) messageData.name = line.replace('Name: ', '')
+          if (line.includes('Email: ')) messageData.email = line.replace('Email: ', '')
+          if (line.includes('Message: ')) messageData.message = line.replace('Message: ', '')
+          if (line.includes('Device: ')) {
+            messageData.deviceInfo = messageData.deviceInfo || {}
+            messageData.deviceInfo.platform = line.replace('Device: ', '')
           }
-        }
+          if (line.includes('Browser: ')) {
+            messageData.deviceInfo = messageData.deviceInfo || {}
+            messageData.deviceInfo.userAgent = line.replace('Browser: ', '')
+          }
+          if (line.includes('Language: ')) {
+            messageData.deviceInfo = messageData.deviceInfo || {}
+            messageData.deviceInfo.language = line.replace('Language: ', '')
+          }
+          if (line.includes('Screen: ')) {
+            messageData.deviceInfo = messageData.deviceInfo || {}
+            messageData.deviceInfo.screenSize = line.replace('Screen: ', '')
+          }
+        })
+
+        return messageData
       })
 
     return NextResponse.json({ messages })
   } catch (error) {
+    console.error('Error reading messages:', error)
     return NextResponse.json(
       { error: 'Failed to fetch messages' },
       { status: 500 }
