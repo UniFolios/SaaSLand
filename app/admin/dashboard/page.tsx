@@ -8,12 +8,6 @@ interface Message {
   name: string
   email: string
   message: string
-  deviceInfo: {
-    platform: string
-    userAgent: string
-    language: string
-    screenSize: string
-  }
 }
 
 interface VisitData {
@@ -35,6 +29,7 @@ export default function AdminDashboard() {
   const [visits, setVisits] = useState<VisitData[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -85,6 +80,33 @@ export default function AdminDashboard() {
   const mostVisitedPages = Object.entries(pageStats)
     .sort(([,a], [,b]) => b - a)
     .slice(0, 5)
+
+  const handleDeleteMessage = async (timestamp: string) => {
+    try {
+      const response = await fetch('/api/admin/messages/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ timestamp })
+      })
+
+      if (response.ok) {
+        // Remove message from state
+        setMessages(messages.filter(msg => msg.timestamp !== timestamp))
+      }
+    } catch (error) {
+      console.error('Failed to delete message:', error)
+    }
+  }
+
+  const handleCopyEmail = (email: string) => {
+    navigator.clipboard.writeText(email)
+      .then(() => {
+        setCopiedEmail(email)
+        // Reset the "Copied!" text after 2 seconds
+        setTimeout(() => setCopiedEmail(null), 2000)
+      })
+      .catch(err => console.error('Failed to copy:', err))
+  }
 
   if (isLoading) {
     return (
@@ -328,11 +350,38 @@ export default function AdminDashboard() {
                     <div>
                       <span className="font-semibold text-neutral-900">{msg.name}</span>
                       <span className="mx-2 text-neutral-400">•</span>
-                      <span className="text-neutral-600">{msg.email}</span>
+                      <span className="text-neutral-600 group relative">
+                        {msg.email}
+                        <button
+                          onClick={() => handleCopyEmail(msg.email)}
+                          className="ml-2 text-neutral-400 hover:text-neutral-600 transition-colors inline-flex items-center gap-1"
+                          title="Copy email"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                          </svg>
+                          {copiedEmail === msg.email && (
+                            <span className="text-green-500 text-sm font-medium">
+                              Email Copied!
+                            </span>
+                          )}
+                        </button>
+                      </span>
                     </div>
-                    <span className="text-neutral-500">
-                      {new Date(msg.timestamp).toLocaleString()}
-                    </span>
+                    <div className="flex items-center gap-4">
+                      <span className="text-neutral-500">
+                        {new Date(msg.timestamp).toLocaleString()}
+                      </span>
+                      <button
+                        onClick={() => handleDeleteMessage(msg.timestamp)}
+                        className="text-red-400 hover:text-red-600 transition-colors"
+                        title="Delete message"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                   <p className="text-neutral-800">{msg.message}</p>
                 </div>
