@@ -49,7 +49,7 @@ export default function AdminLogin() {
       })
 
       if (response.ok) {
-        router.push('/admin/dashboard')
+        window.location.href = '/admin/dashboard'
       } else {
         const data = await response.json()
         setServerError(data.error || 'Invalid credentials')

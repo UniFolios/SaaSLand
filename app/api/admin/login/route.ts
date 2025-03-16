@@ -9,11 +9,11 @@ export async function POST(req: Request) {
     const { username, password } = await req.json()
 
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-      // Set a secure cookie for authentication
       cookies().set('admin_token', 'authenticated', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: 'lax',
+        path: '/',
         maxAge: 60 * 60 * 24 // 24 hours
       })
 

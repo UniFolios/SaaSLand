@@ -15,14 +15,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const headersList = headers()
-  const isAdmin = headersList.get('x-route-type') === 'admin'
+  const pathname = headersList.get('x-pathname') || ''
+  const isAdminRoute = pathname.startsWith('/admin')
 
   return (
     <html lang="en">
       <body>
-        {!isAdmin && <Navbar />}
+        {!isAdminRoute && <Navbar />}
         <main>{children}</main>
-        {!isAdmin && <Footer />}
+        {!isAdminRoute && <Footer />}
       </body>
     </html>
   )

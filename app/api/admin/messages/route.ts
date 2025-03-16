@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
-import fs from 'fs'
-import path from 'path'
+import clientPromise from '@/utils/mongodb'
 
 export async function GET(req: Request) {
   // Check authentication
@@ -11,50 +10,18 @@ export async function GET(req: Request) {
   }
 
   try {
-    const rootDir = process.cwd()
-    const filePath = path.join(rootDir, 'contact-messages.txt')
-
-    if (!fs.existsSync(filePath)) {
-      return NextResponse.json({ messages: [] })
-    }
-
-    const content = fs.readFileSync(filePath, 'utf-8')
-    const messages = content
-      .split('=== New Message ===')
-      .filter(Boolean)
-      .map(block => {
-        const lines = block.trim().split('\n')
-        const messageData: any = {}
-
-        lines.forEach(line => {
-          if (line.includes('Time: ')) messageData.timestamp = new Date(line.replace('Time: ', '')).toISOString()
-          if (line.includes('Name: ')) messageData.name = line.replace('Name: ', '')
-          if (line.includes('Email: ')) messageData.email = line.replace('Email: ', '')
-          if (line.includes('Message: ')) messageData.message = line.replace('Message: ', '')
-          if (line.includes('Device: ')) {
-            messageData.deviceInfo = messageData.deviceInfo || {}
-            messageData.deviceInfo.platform = line.replace('Device: ', '')
-          }
-          if (line.includes('Browser: ')) {
-            messageData.deviceInfo = messageData.deviceInfo || {}
-            messageData.deviceInfo.userAgent = line.replace('Browser: ', '')
-          }
-          if (line.includes('Language: ')) {
-            messageData.deviceInfo = messageData.deviceInfo || {}
-            messageData.deviceInfo.language = line.replace('Language: ', '')
-          }
-          if (line.includes('Screen: ')) {
-            messageData.deviceInfo = messageData.deviceInfo || {}
-            messageData.deviceInfo.screenSize = line.replace('Screen: ', '')
-          }
-        })
-
-        return messageData
-      })
+    const client = await clientPromise
+    const db = client.db('saasland')
+    
+    // Fetch messages from MongoDB
+    const messages = await db.collection('messages')
+      .find({})
+      .sort({ timestamp: -1 }) // Sort by newest first
+      .toArray()
 
     return NextResponse.json({ messages })
   } catch (error) {
-    console.error('Error reading messages:', error)
+    console.error('Failed to fetch messages:', error)
     return NextResponse.json(
       { error: 'Failed to fetch messages' },
       { status: 500 }

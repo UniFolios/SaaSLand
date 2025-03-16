@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
-import fs from 'fs'
-import path from 'path'
+import clientPromise from '@/utils/mongodb'
+import { ObjectId } from 'mongodb'
 
 export async function POST(req: Request) {
   // Check authentication
@@ -11,25 +11,16 @@ export async function POST(req: Request) {
   }
 
   try {
-    const { timestamp } = await req.json()
-    const rootDir = process.cwd()
-    const filePath = path.join(rootDir, 'contact-messages.txt')
-
-    if (!fs.existsSync(filePath)) {
-      return NextResponse.json({ error: 'No messages found' }, { status: 404 })
-    }
-
-    const content = fs.readFileSync(filePath, 'utf-8')
-    const messages = content.split('=== New Message ===')
+    const { _id } = await req.json()
     
-    const updatedMessages = messages
-      .filter(msg => !msg.includes(`Time: ${new Date(timestamp).toLocaleString()}`))
-      .join('=== New Message ===')
-
-    fs.writeFileSync(filePath, updatedMessages)
+    const client = await clientPromise
+    const db = client.db('saasland')
+    
+    await db.collection('messages').deleteOne({ _id: new ObjectId(_id) })
 
     return NextResponse.json({ success: true })
   } catch (error) {
+    console.error('Failed to delete message:', error)
     return NextResponse.json(
       { error: 'Failed to delete message' },
       { status: 500 }
