@@ -29,7 +29,7 @@ const Footer: React.FC<BaseComponentProps> = () => {
               <a href="#tools" className="text-white hover:text-gray-300 transition-colors">Tools</a>
               <a href="#contact" className="text-white hover:text-gray-300 transition-colors">Contact</a>
               <a href="#testimonials" className="text-white hover:text-gray-300 transition-colors">Testimonials</a>
-              <a href="/admin/login" className="text-white hover:text-gray-300 transition-colors">Admin Login</a>
+              <a href="/admin/login" className="text-white hover:text-gray-300 transition-colors">Dashboard</a>
             </div>
           </div>
         </div>

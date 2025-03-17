@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 interface FormErrors {
   username?: string
@@ -67,13 +68,93 @@ export default function AdminLogin() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#e11d48] via-[#f59e0b] to-[#3b82f6] rounded-lg blur opacity-40" />
         <div className="relative bg-white rounded-lg shadow-xl p-8">
           <div className="flex justify-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-neutral-950 to-neutral-900 rounded-full flex items-center justify-center">
-              <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            <Link 
+              href="/"
+              className="flex-none hover:rotate-45 hover:opacity-90 bg-black hover:bg-black rounded-full p-0.5 transition-transform duration-300 ease-out"
+            >
+              <svg
+                className="h-10"
+                viewBox="0 0 200 200"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clipPath="url(#cs_clip_1_star-1)">
+                  <mask
+                    id="cs_mask_1_star-1"
+                    style={{ maskType: 'alpha' }}
+                    width="200"
+                    height="200"
+                    x="0"
+                    y="0"
+                    maskUnits="userSpaceOnUse"
+                  >
+                    <path
+                      fill="#fff"
+                      fillRule="evenodd"
+                      d="M200 100C200 44.772 155.228 0 100 0S0 44.772 0 100s44.772 100 100 100 100-44.772 100-100zm-85.203-14.798c8.22 8.22 20.701 9.967 45.664 13.462L170 100l-9.539 1.335c-24.963 3.495-37.444 5.242-45.664 13.462-8.219 8.22-9.967 20.701-13.462 45.664L100 170l-1.335-9.539c-3.495-24.963-5.243-37.444-13.462-45.664-8.22-8.22-20.701-9.967-45.664-13.462L30 100l9.539-1.336c24.963-3.495 37.444-5.242 45.664-13.462 8.22-8.22 9.967-20.7 13.462-45.663L100 30l1.335 9.538c3.495 24.963 5.243 37.445 13.462 45.664z"
+                      clipRule="evenodd"
+                    />
+                  </mask>
+                  <g mask="url(#cs_mask_1_star-1)">
+                    <path fill="#fff" d="M200 0H0v200h200V0z" />
+                    <path fill="#FFF9C5" fillOpacity="0.44" d="M200 0H0v200h200V0z" />
+                    <g filter="url(#filter0_f_748_4325)">
+                      <path fill="#00F0FF" fillOpacity="0.85" d="M158 22H15v108h143V22z" />
+                      <path fill="#FF58E4" d="M209 101H52v116h157V101z" />
+                      <ellipse
+                        cx="156"
+                        cy="80"
+                        fill="#FFE500"
+                        fillOpacity="0.79"
+                        rx="83"
+                        ry="57"
+                      />
+                    </g>
+                  </g>
+                </g>
+                <defs>
+                  <filter
+                    id="filter0_f_748_4325"
+                    width="344"
+                    height="315"
+                    x="-45"
+                    y="-38"
+                    colorInterpolationFilters="sRGB"
+                    filterUnits="userSpaceOnUse"
+                  >
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                    <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                    <feGaussianBlur stdDeviation="30" result="effect1_foregroundBlur_748_4325" />
+                  </filter>
+                  <clipPath id="cs_clip_1_star-1">
+                    <path fill="#fff" d="M0 0H200V200H0z" />
+                  </clipPath>
+                </defs>
+                <g style={{ mixBlendMode: 'overlay' }} mask="url(#cs_mask_1_star-1)">
+                  <path
+                    fill="gray"
+                    stroke="transparent"
+                    d="M200 0H0v200h200V0z"
+                    filter="url(#cs_noise_1_star-1)"
+                  />
+                </g>
+                <defs>
+                  <filter
+                    id="cs_noise_1_star-1"
+                    width="100%"
+                    height="100%"
+                    x="0%"
+                    y="0%"
+                    filterUnits="objectBoundingBox"
+                  >
+                    <feTurbulence baseFrequency="0.6" numOctaves="5" result="out1" seed="4" />
+                    <feComposite in="out1" in2="SourceGraphic" operator="in" result="out2" />
+                    <feBlend in="SourceGraphic" in2="out2" mode="overlay" result="out3" />
+                  </filter>
+                </defs>
               </svg>
-            </div>
+            </Link>
           </div>
-          <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-neutral-950 to-neutral-700 bg-clip-text text-transparent">Admin Login</h2>
+          <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-neutral-950 to-neutral-700 bg-clip-text text-transparent">Admin Dashboard</h2>
           
           {serverError && (
             <div className="mb-6 p-3 text-sm text-red-500 bg-red-50 rounded-md border border-red-200">
